@@ -1,20 +1,19 @@
-#include <SDL_mixer.h>
-
 #include "game_state.h"
 #include "logic.h"
+#include "bot.h"
 
-void switch_player (game_t *game) {
+void switchPlayer (game_t *game) {
     if (game->player == PLAYER_X) game->player = PLAYER_O;
     else if (game->player == PLAYER_O) game->player = PLAYER_X;
 }
 
-int player_won (game_t *game, int player) {
+int playerWon (game_t *game, int player) {
     int row_count = 0, column_count = 0;
     int diag1_count = 0, diag2_count = 0;
-    for (int i=0; i<N; i++) {
-        for (int j=0; j<N; j++) {
-            if (game->board[i*N+j] == player) row_count++;
-            if (game->board[j*N+i] == player) column_count++;
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (game->board[i * N + j] == player) row_count++;
+            if (game->board[j * N + i] == player) column_count++;
         }
         if (row_count >= N || column_count >= N) return 1;
         row_count = 0;
@@ -25,40 +24,47 @@ int player_won (game_t *game, int player) {
     return diag1_count >= N || diag2_count >= N;
 }
 
-int cells_count (const int *board, int cell) {
+int cellsCount (const int *board, int cell) {
     int count = 0;
-    for (int i=0; i<N*N; i++) {
+    for (int i = 0; i < N * N; i++) {
         if (board[i] == cell) count++;
     }
     return count;
 }
 
-void game_over_condition(game_t *game) {
-    if (player_won(game, PLAYER_X)) game->state = PLAYER_X_WON;
-    else if (player_won(game, PLAYER_O)) game->state = PLAYER_O_WON;
-    else if (cells_count(game->board, EMPTY) == 0) game->state = DRAW;
+void gameOverCondition(game_t *game) {
+    if (playerWon(game, PLAYER_X)) game->state = PLAYER_X_WON;
+    else if (playerWon(game, PLAYER_O)) game->state = PLAYER_O_WON;
+    else if (cellsCount(game->board, EMPTY) == 0) game->state = DRAW;
 }
 
-void player_turn(game_t *game, int row, int column, Mix_Chunk *click_sound) {
+void playerTurn(game_t *game, int row, int column, Mix_Chunk *click_sound) {
     if (game->board[row * N + column] == EMPTY) {
         game->board[row * N + column] = game->player;
         Mix_PlayChannel(-1, click_sound, 0);
-        switch_player(game);
-        game_over_condition(game);
+        gameOverCondition(game);
+        switchPlayer(game);
+        if (game->state == RUNNING_STATE && game->player == PLAYER_O) {
+            int bestMove = findBestMove(game->board);
+            game->board[bestMove] = game->player;
+            Mix_PlayChannel(-1, click_sound, 0);
+            gameOverCondition(game);
+            switchPlayer(game);
+        }
     }
 }
 
-void reset_game(game_t *game) {
+void resetGame(game_t *game) {
     game->player = PLAYER_X;
     game->state = RUNNING_STATE;
-    for (int i=0; i<N*N; i++) {
+    for (int i = 0; i < N*N; i++) {
         game->board[i] = EMPTY;
     }
 }
 
 void clickOnCell(game_t *game, int row, int column, Mix_Chunk *click_sound){
     if (game->state == RUNNING_STATE) {
-        player_turn(game, row, column, click_sound);
+        playerTurn(game, row, column, click_sound);
     }
-    else reset_game(game);
+    else resetGame(game);
 }

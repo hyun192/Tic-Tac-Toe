@@ -1,28 +1,31 @@
 # depslib dependency file v1.0
-1716232086 source:c:\users\fpt shop\desktop\tictactoe\game_rendering.cpp
+1717027696 source:c:\users\fpt shop\desktop\tictactoe\game_rendering.cpp
+	<algorithm>
 	<SDL.h>
+	<SDL2_gfxPrimitives.h>
 	"game_state.h"
 	"game_rendering.h"
 
-1716232066 c:\users\fpt shop\desktop\tictactoe\game_state.h
+1717028842 c:\users\fpt shop\desktop\tictactoe\game_state.h
 
-1716232172 c:\users\fpt shop\desktop\tictactoe\game_rendering.h
+1716292809 c:\users\fpt shop\desktop\tictactoe\game_rendering.h
 
-1716240179 source:c:\users\fpt shop\desktop\tictactoe\logic.cpp
-	<SDL_mixer.h>
+1717029324 source:c:\users\fpt shop\desktop\tictactoe\logic.cpp
 	"game_state.h"
 	"logic.h"
+	"bot.h"
 
-1716232168 c:\users\fpt shop\desktop\tictactoe\logic.h
+1716732916 c:\users\fpt shop\desktop\tictactoe\logic.h
+	<SDL_mixer.h>
 
-1716241093 source:c:\users\fpt shop\desktop\tictactoe\main.cpp
+1717027639 source:c:\users\fpt shop\desktop\tictactoe\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_mixer.h>
-	<SDL_ttf.h>
 	"game_state.h"
 	"game_rendering.h"
 	"logic.h"
+	"bot.h"
 
 1716232086 source:c:\users\fpt shop\desktop\btvnltnc\tictactoe\game_rendering.cpp
 	<SDL.h>
@@ -48,4 +51,19 @@
 	"game_state.h"
 	"game_rendering.h"
 	"logic.h"
+
+1716683578 source:c:\users\fpt shop\desktop\tictactoe\menu_rendering.cpp
+	<SDL_ttf.h>
+	<iostream>
+	"menu_rendering.h"
+
+1716683471 c:\users\fpt shop\desktop\tictactoe\menu_rendering.h
+
+1717037136 source:c:\users\fpt shop\desktop\tictactoe\bot.cpp
+	<algorithm>
+	"bot.h"
+	"game_state.h"
+	"logic.h"
+
+1716695721 c:\users\fpt shop\desktop\tictactoe\bot.h
 

@@ -2,11 +2,11 @@
 
 #include <SDL.h>
 #include <SDL_mixer.h>
-#include <SDL_ttf.h>
 
 #include "game_state.h"
 #include "game_rendering.h"
 #include "logic.h"
+#include "bot.h"
 
 using namespace std;
 
@@ -18,11 +18,6 @@ int SDL_main(int argc, char *argv[]) {
 
     if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) != 0) {
         cerr << "Could not initialize SDL2_mixer: " << Mix_GetError() << endl;
-        return EXIT_FAILURE;
-    }
-
-    if (TTF_Init() != 0) {
-        cerr << "Could not initialize SDL2_ttf: " << TTF_GetError() << std::endl;
         return EXIT_FAILURE;
     }
 
@@ -58,9 +53,8 @@ int SDL_main(int argc, char *argv[]) {
         .state = RUNNING_STATE
     };
 
-    //Game Loop
+    //Game loop
     SDL_Event e;
-    int quit = 0;
     while(game.state != QUIT) {
         while (SDL_PollEvent(&e)) {
             switch (e.type) {
@@ -77,12 +71,13 @@ int SDL_main(int argc, char *argv[]) {
             default: {}
             }
         }
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
         SDL_RenderClear(renderer);
         gameStateRendering(renderer, &game);
         SDL_RenderPresent(renderer);
     }
 
+    //Clean up
     Mix_FreeChunk(click_sound);
     Mix_CloseAudio();
     SDL_DestroyRenderer(renderer);
