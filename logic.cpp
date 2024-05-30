@@ -45,7 +45,7 @@ void playerTurn(game_t *game, int row, int column, Mix_Chunk *click_sound) {
         gameOverCondition(game);
         switchPlayer(game);
         if (game->state == RUNNING_STATE && game->player == PLAYER_O) {
-            int bestMove = findBestMove(game->board);
+            int bestMove = findBestMove(game, game->board);
             game->board[bestMove] = game->player;
             Mix_PlayChannel(-1, click_sound, 0);
             gameOverCondition(game);

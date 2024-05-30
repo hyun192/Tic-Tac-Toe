@@ -6,16 +6,16 @@
 	"game_state.h"
 	"game_rendering.h"
 
-1717028842 c:\users\fpt shop\desktop\tictactoe\game_state.h
+1717039050 c:\users\fpt shop\desktop\tictactoe\game_state.h
 
 1716292809 c:\users\fpt shop\desktop\tictactoe\game_rendering.h
 
-1717029324 source:c:\users\fpt shop\desktop\tictactoe\logic.cpp
+1717071163 source:c:\users\fpt shop\desktop\tictactoe\logic.cpp
 	"game_state.h"
 	"logic.h"
 	"bot.h"
 
-1716732916 c:\users\fpt shop\desktop\tictactoe\logic.h
+1717071163 c:\users\fpt shop\desktop\tictactoe\logic.h
 	<SDL_mixer.h>
 
 1717027639 source:c:\users\fpt shop\desktop\tictactoe\main.cpp
@@ -59,11 +59,12 @@
 
 1716683471 c:\users\fpt shop\desktop\tictactoe\menu_rendering.h
 
-1717037136 source:c:\users\fpt shop\desktop\tictactoe\bot.cpp
+1717071648 source:c:\users\fpt shop\desktop\tictactoe\bot.cpp
 	<algorithm>
 	"bot.h"
 	"game_state.h"
 	"logic.h"
 
-1716695721 c:\users\fpt shop\desktop\tictactoe\bot.h
+1717071533 c:\users\fpt shop\desktop\tictactoe\bot.h
+	"game_state.h"
 
