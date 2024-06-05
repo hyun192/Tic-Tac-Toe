@@ -10,7 +10,7 @@
 
 using namespace std;
 
-int SDL_main(int argc, char *argv[]) {
+int main(int argc, char *argv[]) {
     if (SDL_Init(SDL_INIT_VIDEO) != 0) {
         cerr << "Could not initialize SDL2: " << SDL_GetError() << endl;
         return EXIT_FAILURE;
